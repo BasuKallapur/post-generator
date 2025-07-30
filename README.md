@@ -1,96 +1,90 @@
-# LinkedIn Post Generator Using Generative AI
+# LinkedIn Post Generator with Image and Video Support
 
-This project generates professional LinkedIn posts, articles, and engagement strategies using Generative AI. By utilizing AI-driven models, the application helps create posts in various lengths and languages (English and Hinglish) for content creators, job seekers, influencers, and marketers on LinkedIn.
-
-The app is built using **Streamlit**, **LangChain**, **Groq**, and other essential libraries to interact with AI models, process data, and generate content dynamically.
+This project is a Streamlit application that generates professional LinkedIn posts with support for images and videos. It uses a Large Language Model (LLM) from Groq to generate content based on user prompts, desired length, and language. The application also allows users to upload media files and post the generated content directly to their LinkedIn profile.
 
 ## Features
 
-- **Post Generation**: Generate LinkedIn posts based on topics, lengths, and languages.
-- **Language Support**: English, Hinglish (Hindi + English) and Kannada.
-- **Customizable Options**: Length of the post (Short, Medium, Long), Topic (Tags), and Language.
-- **Integration with Few-Shot Learning**: AI uses previously processed posts as examples for content generation.
+- Generate LinkedIn posts from a user-provided topic.
+- Customize post length (Short, Medium, Long).
+- Select post language (English, Hinglish, Kannada).
+- Upload images and videos to accompany the post.
+- Copy the generated post to the clipboard.
+- Post directly to LinkedIn.
 
 ## Technologies Used
 
-- **Streamlit** - Web framework for building the app.
-- **LangChain** - A framework for language model interaction.
-- **Groq API** - To interact with the language models.
-- **Pandas** - For data manipulation.
-- **Python-dotenv** - For managing environment variables.
-- **JSON** - For storing raw and processed post data.
+- Streamlit
+- LangChain
+- Groq API
+- Pandas
+- python-dotenv
+- requests
+- pyperclip
+- LinkedIn API
 
 ## Setup Instructions
 
 ### 1. Clone the Repository
 
-First, clone the repository to your local machine.
-
 ```bash
-git clone https://github.com/yourusername/linkedin-post-generator.git
-cd linkedin-post-generator
+git clone <repository-url>
+cd linkedin-post-generator-with-image-post
 ```
 
 ### 2. Install Dependencies
+
 Create a virtual environment and install the required dependencies.
+
 ```bash
 python -m venv env
-source env/bin/activate  # For Linux/Mac
-env\Scripts\activate  # For Windows
+source env/bin/activate  # On Windows, use `env\Scripts\activate`
 pip install -r requirements.txt
 ```
 
 ### 3. Set Up Environment Variables
-Create a .env file in the root directory and add your Groq API key:
-```bash
-GROQ_API_KEY= "Enter You API key"
+
+Create a `.env` file in the root directory and add the following:
+
+```
+GROQ_API_KEY="your_groq_api_key"
+LINKEDIN_ACCESS_TOKEN="your_linkedin_access_token"
+LINKEDIN_COMPANY_ID="your_linkedin_company_id"
 ```
 
-### 4. Running the App
-Once you have all the dependencies set up and your environment variables configured, you can run the app using Streamlit:
+## How to Run
+
+### 1. Pre-process the data (optional)
+
+If you have raw post data in `data/raw_posts.json`, you can pre-process it to generate `data/processed_posts.json`.
+
+```bash
+python preprocess.py
+```
+
+### 2. Run the Streamlit app
+
 ```bash
 streamlit run main.py
 ```
 
-### 5. project structure
-```bash
-linkedin-post-generator/
-│
-├── data/
-│   ├── raw_posts.json         # Raw input posts data
-│   └── processed_posts.json   # Processed posts with metadata
-│
-├── main.py                    # Main app file (Streamlit)
-├── preprocess.py              # Data preprocessing and metadata extraction
-├── llm_helper.py              # Integration with AI model (Groq API)
-├── few_shot.py                # Class for handling few-shot learning
-├── post_generator.py          # Post generation logic using AI
-├── requirements.txt           # List of dependencies
-└── .env                       # Environment variables for API keys
+## Project Structure
+
+```
+.
+├── .env
+├── data
+│   ├── processed_posts.json
+│   └── raw_posts.json
+├── few_shot.py
+├── llm_helper.py
+├── main.py
+├── post_generator.py
+├── preprocess.py
+├── README.md
+├── requirements.txt
+└── testfile.py
 ```
 
-### 6. Contributing
-Contributions are welcome! If you want to help improve the project, feel free to fork the repository, create a branch, and submit a pull request.
+## Contributing
 
-Steps for Contribution
-Fork the repository
-Create a new branch 
-```bash
-git checkout -b feature-branch
-```
-Make changes and commit them 
-```bash
-git commit -m 'Add new feature'
-```
-Push to your branch 
-```bash
-git push origin feature-branch
-```
-Submit a pull request with a detailed description of your changes.
-
-
-
-
-
-
-
+Contributions are welcome! Please fork the repository and submit a pull request.
